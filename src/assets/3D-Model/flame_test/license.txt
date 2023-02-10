@@ -1,0 +1,11 @@
+Model Information:
+* title:	FLAME TEST
+* source:	https://sketchfab.com/3d-models/flame-test-e87b4e7dfb3d4e1a8118a79baa0ac39d
+* author:	UJWAL CHAUHAN (https://sketchfab.com/xamplle)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "FLAME TEST" (https://sketchfab.com/3d-models/flame-test-e87b4e7dfb3d4e1a8118a79baa0ac39d) by UJWAL CHAUHAN (https://sketchfab.com/xamplle) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
