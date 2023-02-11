@@ -91,7 +91,7 @@ const Quote = () => {
 		let trigger = ScrollTrigger.create({
 			trigger: Elem,
 			start: 'top top',
-			pin: false,
+			pin: true,
 			pinSpacing: true,
 		});
 
