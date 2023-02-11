@@ -2,7 +2,7 @@
 
 ## Profile Website
 
- 🚀 My own CV website 2023 with some integrations and animations
+ 🚀 My own website with animations 2023 with some integrations and animations
 
  ## What was my process for creating this?
 
