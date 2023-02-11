@@ -111,14 +111,14 @@ const Quote = () => {
 				},
 			})
 			.fromTo(fire.current, { x: 0 }, { x: '10%' }, 'key1');
-		console.log(fire);
+		console.log('quote', fire);
 
 		return () => {
 			if (t1) t1.kill();
 		};
 	}, []);
 	return (
-		<Section ref={sectionRef}>
+		<Section id="intro" ref={sectionRef}>
 			<TextContainer>
 				<Text delay="0s">
 					<span>ERIC SÁNCHEZ</span>{' '}

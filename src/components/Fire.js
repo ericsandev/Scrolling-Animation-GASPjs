@@ -256,26 +256,40 @@ const FireItem = () => {
 	//fires
 	const sectionRef = useRef(null);
 	const fireOne = useRef(null);
-	const fireTwo = useRef(null);
 
 	//Fires
 	useLayoutEffect(() => {
 		const Elem = sectionRef.current;
 
-		let t1 = gsap
-			.timeline({
-				scrollTrigger: {
-					trigger: Elem,
-					start: 'top top',
-					endTrigger: '#css',
-					end: 'top top',
-					scrub: 1,
-					pin: true,
-				},
-			})
+		let t1 = gsap.timeline({
+			scrollTrigger: {
+				trigger: Elem,
+				// start: 'top top',
+				// end: 'bottom+=200 bottom',
+				scrub: 1.4,
+				pin: true,
+			},
+		});
 
-			.fromTo(fireOne.current, { x: 10, y: '30%' }, { x: 1200 }, 'key1')
-			.fromTo(fireTwo.current, { x: 120, y: '20%' }, { x: 400 }, 'key1');
+		// .fromTo(fireOne.current, { x: 0 }, { x: 200 }, 'key1')
+		t1.to(fireOne.current, {
+			duration: 10,
+			immediateRender: true,
+		});
+		t1.to(
+			'.indicator',
+			{
+				opacity: 0,
+			},
+			0
+		);
+		t1.to(fireOne.current, {
+			x: 1700,
+			y: -100,
+			scale: 3,
+			opacity: 1,
+		});
+		t1.to('#intro', { x: 0, opacity: 1 }, 'key4');
 
 		return () => {
 			if (t1) t1.kill();
@@ -283,15 +297,13 @@ const FireItem = () => {
 	}, []);
 
 	return (
-		<Section ref={sectionRef}>
-			<FireContainer ref={fireOne}>
-				<Fire />
-			</FireContainer>
-
-			<FireContainer2 ref={fireTwo}>
-				<Fire />
-			</FireContainer2>
-		</Section>
+		<>
+			<Section ref={sectionRef}>
+				<FireContainer ref={fireOne}>
+					<Fire />
+				</FireContainer>
+			</Section>
+		</>
 	);
 };
 

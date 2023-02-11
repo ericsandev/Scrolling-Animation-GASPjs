@@ -15,12 +15,25 @@ const Section = styled.section`
 	align-items: center;
 	background-color: var(--offWhite);
 	overflow: hidden;
+	perspective: 100rem;
+	perspective-origin: center center;
+	transform-style: preserve-3d;
 `;
 const moveUp = keyframes`
 100%{
     transform: translateY(100);
 }
 `;
+
+const rotate = keyframes`
+@keyframes raysRotate {
+	50% {
+		transform: rotate(180deg) scale(1.5);
+	}
+	100% {
+		transform: rotate(360deg) scale(1);
+	}
+}`;
 
 const Welcome = styled.h1`
 	font-size: var(--fontBig);
@@ -244,7 +257,8 @@ const Fire = styled.div`
 17px 25px var(--red), 10px 26px var(--red), 11px 26px var(--red), 12px 26px var(--red),
 13px 26px var(--red), 14px 26px var(--red), 15px 26px var(--red);
 }
-
+transform-style: preserve-3d;
+transform-origin: center;
   width: 1px;
   height: 1px;
   transform: scale(8) rotate(-45deg);
@@ -298,8 +312,8 @@ const V1 = styled.div`
 const DesignSection = () => {
 	//fires
 	const sectionRef = useRef(null);
-	const fireOne = useRef(null);
-	const fireTwo = useRef(null);
+
+	const fire = useRef(null);
 	const textRef = useRef(null);
 	const videoRef1 = useRef(null);
 	const textRef2 = useRef(null);
@@ -312,23 +326,13 @@ const DesignSection = () => {
 		const video1Elem = videoRef1.current;
 		const Elem = sectionRef.current;
 
-		gsap.to(Elem, {
-			scrollTrigger: {
-				trigger: Elem,
-				start: 'top top',
-				end: `bottom+=500 bottom`,
-				scrub: 1,
-				pin: false,
-				pinSpacing: true,
-			},
-		});
 		let t2 = gsap
 			.timeline({
 				scrollTrigger: {
 					trigger: Elem,
 					start: 'top top',
 					end: `bottom+=500 bottom`,
-					scrub: 1,
+					scrub: true,
 				},
 			})
 			.to(video1Elem, { scale: 0.4 }, 'key1');
@@ -342,7 +346,6 @@ const DesignSection = () => {
 						start: 'top top',
 						end: `bottom+=500 bottom`,
 						scrub: 1,
-						markers: true,
 					},
 					x: -700,
 					y: -250,
@@ -367,15 +370,14 @@ const DesignSection = () => {
 						start: 'top top',
 						end: `bottom+=500 bottom`,
 						scrub: 1,
-						markers: true,
 					},
-					x: -800,
+					x: -200,
 					y: -100,
 					scale: 2,
 					opacity: 1,
 				},
 				{
-					x: 880,
+					x: 180,
 					y: -200,
 					scale: 1,
 					opacity: 1,
@@ -383,61 +385,47 @@ const DesignSection = () => {
 			)
 		);
 
-		let t1 = gsap
+		let t3 = gsap
 			.timeline({
 				scrollTrigger: {
-					trigger: sectionRef.current,
+					trigger: Elem,
 					start: 'top top',
-					end: 'bottom top',
-					scrub: 0.5,
+					end: 'bottom+=400 bottom',
+					scrub: 0.2,
+					scale: 0.2,
 					pin: true,
-					endTrigger: '#processor',
+					endTrigger: '#glow',
 				},
 			})
-
-			.fromTo(
-				fireOne.current,
-				{ x: -200, y: '30%' },
-				{ x: 1900, y: 400 },
-				'key1'
-			)
-			.fromTo(
-				fireTwo.current,
-				{ x: 120, y: '20%' },
-				{ x: 400, y: -100 },
-				'key1'
-			);
+			.fromTo(fire.current, { x: 0 }, { x: '10%' }, 'key1');
+		console.log('design', t3);
 
 		return () => {
-			if (t1) t1.kill();
+			if (t3) t3.kill();
 			if (t2) t2.kill();
 		};
 	}, []);
 
 	return (
-		<Section id="css" ref={sectionRef}>
+		<Section id="animation" ref={sectionRef}>
 			<V1 ref={videoRef1}>
 				<p>AWESOME</p>
 				<h2>ANIMATIONS</h2>
 			</V1>
 
-			<FireContainer ref={fireOne}>
-				<Fire />
-			</FireContainer>
 			<FireContainer ref={textRef}>
-				<Welcome className="yellow">CSS</Welcome>
-				<Welcome className="orange">CSS</Welcome>
-				<Welcome className="red">CSS</Welcome>
+				<Welcome className="blueDark">CSS</Welcome>
+				<Welcome className="blue">CSS</Welcome>
+				<Welcome className="blueLight">CSS</Welcome>
 			</FireContainer>
 
 			<FireContainer ref={textRef2}>
-				<Welcome className="red">SCSS</Welcome>
-				<Welcome className="yellow">SCSS</Welcome>
-				<Welcome className="orange">SCSS</Welcome>
+				<Welcome id="red" className="blueDark">
+					SCSS
+				</Welcome>
+				<Welcome className="blue">SCSS</Welcome>
+				<Welcome className="blueLight">SCSS</Welcome>
 			</FireContainer>
-			<FireContainer2 ref={fireTwo}>
-				<Fire />
-			</FireContainer2>
 		</Section>
 	);
 };
