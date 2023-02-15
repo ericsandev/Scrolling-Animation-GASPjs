@@ -2,7 +2,10 @@
 
 ## Profile Website
 
- 🚀 My own website with animations 2023 with some integrations and animations
+ 🚀 My own website 2023 with some integrations and animations
+
+DEMO
+ [https://eric-seven.vercel.app/](https://eric-seven.vercel.app/)
 
  ## What was my process for creating this?
 
